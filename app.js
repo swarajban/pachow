@@ -8,12 +8,21 @@ var app = express();
 
 
 // Default action
-app.get('/', function(req, res){
-	exec('python ./pachow.py', function(error, stdout, stderr){
+app.get('/', function(req, res, next){
+	var pachowPath = '/usr/bin/python ' + __dirname + '/pachow.py';
+	exec(pachowPath, function(error, stdout, stderr){
+		if(error){
+			next(error);
+		}
 		console.log("Generated pachow: " + stdout);	
 		res.send(stdout);
 	});
 });
+
+// Middleware
+app.use(express.errorHandler({showStack: true, dumpExceptions: true}));
+
+
 
 
 // Configure dev vs. production settings
