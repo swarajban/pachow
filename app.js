@@ -1,3 +1,5 @@
+// PACHOW
+// Swaraj
 
 // Requires
 var express = require('express'),
@@ -24,16 +26,17 @@ app.use(express.errorHandler({showStack: true, dumpExceptions: true}));
 
 
 
-
-// Configure dev vs. production settings
-var port = 3000;
+// Configure dev vs. prod settings
 app.configure('development', function(){
+	console.log("App in development mode");
 });
 
 app.configure('production', function(){
-	port = 80;
+	console.log("App in production mode");
 });
 
+
+var port = 8123;
 // Start app!
 app.listen(port);
 console.log("Listening on port " + port);
