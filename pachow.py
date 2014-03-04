@@ -7,7 +7,7 @@ def main():
 	vowels = ['i', 'o', 'a']
 
 	pachow = ''
-	numSyllables = random.randint(1,4)
+	numSyllables = random.randint(1,5)
 	for i in range(0, numSyllables):
 		hard = random.choice(hards)
 		vowel = random.choice(vowels)
