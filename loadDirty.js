@@ -5,13 +5,15 @@ var redis = require('redis'),
 var dirty =  require('./dirty.json');
 var redisClient = redis.createClient();
 
-_.each(dirty.profanities, function (profanity) {
-	redisClient.sadd('pachow::profanities', profanity);
-});
+redisClient.on('ready', function () {
+    console.log('connected to redis');
+    _.each(dirty.profanities, function (profanity) {
+        redisClient.sadd('pachow::profanities', profanity);
+    });
 
-_.each(dirty.nouns, function (noun) {
-	redisClient.sadd('pachow::nouns', noun);
+    _.each(dirty.nouns, function (noun) {
+        redisClient.sadd('pachow::nouns', noun);
+    });
+    console.log('done');
+    process.exit(code=0);
 });
-
-console.log('done');
-process.exit(code=0);
