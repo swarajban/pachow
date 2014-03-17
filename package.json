@@ -6,6 +6,6 @@
   "dependencies": {
     "express": "3.x",
     "redis": "latest",
-    "underscore": "^1.6.0"
+    "underscore": "latest"
   }
 }
