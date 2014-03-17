@@ -3,6 +3,8 @@
 
 // Requires
 var express = require('express'),
+	redis = require('redis'),
+	_ = require('underscore'),
 	exec 	= require('child_process').exec;
 
 // Create app
@@ -57,6 +59,18 @@ app.get('/js', function(req, res, next){
 	res.send(pachow());
 });
 
+
+app.get('/dirty', function (req, res) {
+	var redisClient = redis.createClient();
+	redisClient.smembers('pachow::profanities', function(err, profanities){
+		var profanity = _.sample(profanities, 1)[0];
+		redisClient.smembers('pachow::nouns', function(err, nouns){
+			var noun = _.sample(nouns, 1)[0];
+			var dirty = profanity + noun;
+			res.send(dirty)
+		});
+	});
+});
 
 
 
