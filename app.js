@@ -34,6 +34,9 @@ app.get('/php', function(req, res, next){
 	});
 });
 
+app.get('/bestFriends', function (req, res, next) {
+    res.send('Is best-friends down? Yes');
+});
 
 var pachow = function(){
 	var hards = ['p', 'ch', 'k', 't', 'w', 'z', 'm'];
