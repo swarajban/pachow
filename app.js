@@ -34,6 +34,17 @@ app.get('/php', function(req, res, next){
 	});
 });
 
+app.get('/go', function (req, res, next) {
+	var goPachowPath = 'go run pachow.go';
+	exec(goPachowPath, function (error, stdout, stderr) {
+		if (error) {
+			next(error);
+		}
+		console.log("Generated go pachow: " + stdout);
+		res.send(stdout);
+	});
+});
+
 app.get('/bestFriends', function (req, res, next) {
     res.send('Is best-friends down? Yes');
 });
