@@ -35,8 +35,8 @@ app.get('/php', function(req, res, next){
 });
 
 app.get('/go', function (req, res, next) {
-	var goPachowPath = 'go run pachow.go';
-	exec(goPachowPath, function (error, stdout, stderr) {
+    var pachowPath = '/usr/bin/go run ' + __dirname + '/pachow.go';
+	exec(pachowPath, function (error, stdout, stderr) {
 		if (error) {
 			next(error);
 		}
